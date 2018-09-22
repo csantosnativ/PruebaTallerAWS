@@ -2,17 +2,17 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /pruebaAWS/
+    destination: /home/ec2-user/pruebaAWS/
 hooks:
   BeforeInstall:
     - location: script/BeforeInstall.sh
-      timeout: 300
-      runas: root
+      timeout: 90
+      runas: ec2-user
   AfterInstall:
     - location: script/AfterInstall.sh
-      timeout: 300
+      timeout: 90
       runas: ec2-user
   ApplicationStart:
     - location: script/ApplicationStart.sh
-      timeout: 300
+      timeout: 90
       runas: ec2-user
