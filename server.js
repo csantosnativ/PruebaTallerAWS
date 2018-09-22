@@ -1,21 +1,20 @@
 const express = require('express');
-const nunjucksExp = require('express-nunjucks');
 const app = express();
+const server = require('http').createServer(app);
 const port = 3000;
-
-app.use(express.static('static'));
-app.set('views', __dirname + '/views');
-const njks = nunjucksExp(app, {
-    watch: true,
-    noCache: true
+var hbs = require('express-handlebars').create({
+    defaultLayout: 'main'
 });
+
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
 
 // Ruta HOME
 app.get('/', (req, res) => {
-    res.send('Hola Mundo!');
+    res.render('index', { name: 'Cristian' });
 });
 
 // Se levanta el servidor
-app.listen(port, () => {
+server.listen(port, () => {
     console.log('Node JS app corriendo en puerto 3000');
-})
+});
