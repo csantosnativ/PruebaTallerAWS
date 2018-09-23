@@ -2,12 +2,21 @@ const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
 const port = 3000;
-var hbs = require('express-handlebars').create({
+const path = require('path');
+const rootPath = path.dirname(require.main.filename);
+const nunjucks = require('nunjucks');
+
+/*var hbs = require('express-handlebars').create({
     defaultLayout: 'main'
 });
 
 app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
+app.set('view engine', 'handlebars');*/
+
+
+nunjucks.configure(rootPath + '/templates', {
+    express: app
+})
 
 // Ruta HOME
 app.get('/', (req, res) => {
