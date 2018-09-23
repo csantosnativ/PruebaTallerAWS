@@ -1,3 +1,4 @@
 # Evitar subir las credenciales
 credentials
 node_modules
+ec2codedeploypolicies.txt
